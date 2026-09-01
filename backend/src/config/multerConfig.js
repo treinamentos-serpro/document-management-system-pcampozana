@@ -2,7 +2,7 @@
 // Os arquivos são gravados em backend/storage com nomes hasheados (UUID).
 
 const multer = require('multer');
-const { v4: uuidv4 } = require('crypto');
+const crypto = require('crypto');
 const path = require('path');
 const fs = require('fs');
 
@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     // Gerar ID único e preservar extensão original
     const ext = path.extname(file.originalname);
-    const filename = `${uuidv4()}${ext}`;
+    const filename = `${crypto.randomUUID()}${ext}`;
     cb(null, filename);
   }
 });

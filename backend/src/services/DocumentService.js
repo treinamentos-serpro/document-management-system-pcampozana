@@ -3,7 +3,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const { v4: uuidv4 } = require('crypto');
+const crypto = require('crypto');
 const DocumentRepository = require('../repositories/DocumentRepository');
 
 // Instância do repositório
@@ -40,7 +40,7 @@ class DocumentService {
     }
 
     // Criar metadados do documento
-    const documentId = uuidv4();
+    const documentId = crypto.randomUUID();
     const metadata = {
       id: documentId,
       originalName: file.originalname,
